@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, TouchableHighlight, Text } from 'react-native'
+import { Fab, Icon } from 'native-base'
 
 import Posts from './components/posts/Posts'
 
@@ -23,13 +24,11 @@ class Home extends React.Component {
     return (
       <View style={styles.container}>
         <Posts navigation={this.props.navigation} />
-        <TouchableHighlight
-          style={styles.newPost}
-          underlayColor={'red'}
-          onPress={this.newPost}
-        >
-          <Text style={styles.newPostText}>New Post</Text>
-        </TouchableHighlight>
+        <Fab onPress={this.newPost} style={{
+          backgroundColor: 'darkturquoise',
+        }}>
+          <Icon name='add' />
+        </Fab>
       </View>
     );
   }

@@ -5,4 +5,8 @@ export default {
   headerTitleStyle: {
     color: '#FFF',
   },
+  headerBackTitleStlye: {
+    color: '#FFF',
+  },
+  headerTintColor: '#FFF',
 }

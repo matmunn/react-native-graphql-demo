@@ -1,10 +1,20 @@
 import React from 'react'
-import { View, Text, ActivityIndicator, FlatList } from 'react-native'
-import { ListItem } from 'native-base'
+import { View, Text, FlatList } from 'react-native'
+import { ListItem, Body, Right, Icon } from 'native-base'
 import { graphql } from 'react-apollo'
 import { gql } from 'apollo-boost'
 
 class Posts extends React.Component {
+  navigateToPost = (post) => () => {
+    this.props.navigation.navigate(
+      'Post',
+      {
+        id: post.id,
+        title: post.title,
+      }
+    )
+  }
+
   render() {
     const { allPosts, loading, navigation, refetch } = this.props
 
@@ -16,15 +26,16 @@ class Posts extends React.Component {
           renderItem={
             ({ item }) => (
               <ListItem
-                onPress={
-                  () => {
-                    navigation.navigate('Post', { id: item.id })
-                  }
-                }
+                onPress={this.navigateToPost(item)}
               >
-                <Text>
-                  {item.title}
-                </Text>
+                <Body>
+                  <Text>
+                    {item.title}
+                  </Text>
+                </Body>
+                <Right>
+                  <Icon name='arrow-forward' />
+                </Right>
               </ListItem>
             )
           }
@@ -40,7 +51,7 @@ class Posts extends React.Component {
 }
 
 const postsQuery = gql`
-  {
+  query PostsQuery {
     allPosts {
       id
       title
