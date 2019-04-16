@@ -1,8 +1,10 @@
+import React from 'react'
 import { createAppContainer, createStackNavigator } from 'react-navigation'
 
 import Home from './Home'
 import Post from './components/posts/Post'
 import NewPost from './components/posts/NewPost'
+import Login from './components/user/Login'
 
 
 const Navigator = createAppContainer(
@@ -19,4 +21,9 @@ const Navigator = createAppContainer(
   })
 )
 
-export default Navigator
+const NavWrapper = (props) => {
+  return <Login />
+  return <Navigator />
+}
+
+export default NavWrapper

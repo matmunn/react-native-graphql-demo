@@ -52,7 +52,7 @@ class Posts extends React.Component {
 
 const postsQuery = gql`
   query PostsQuery {
-    allPosts {
+    allPosts(orderBy: createdAt_DESC) {
       id
       title
     }
