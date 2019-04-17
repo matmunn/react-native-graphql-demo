@@ -1,5 +1,9 @@
 import React from 'react'
+import { ActivityIndicator } from 'react-native'
 import { createAppContainer, createStackNavigator } from 'react-navigation'
+import { compose, graphql } from 'react-apollo'
+import { gql } from 'apollo-boost'
+
 
 import Home from './Home'
 import Post from './components/posts/Post'
@@ -21,9 +25,25 @@ const Navigator = createAppContainer(
   })
 )
 
-const NavWrapper = (props) => {
-  return <Login />
+const NavWrapper = ({ loading, user }) => {
+  if (loading) {
+    return <ActivityIndicator size='large' />
+  }
+
+  if (!user) {
+    return <Login />
+  }
+
   return <Navigator />
 }
 
-export default NavWrapper
+const userQuery = gql`
+  query UserQuery {
+    user {
+      id
+      email
+    }
+  }
+`
+
+export default graphql(userQuery, { props: ({ data }) => ({...data}) })(NavWrapper)

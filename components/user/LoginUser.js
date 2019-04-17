@@ -3,6 +3,8 @@ import { View, Text } from 'react-native'
 import { graphql } from 'react-apollo'
 import { gql } from 'apollo-boost'
 
+import { signIn } from '../../loginUtils'
+
 import UserForm from './UserForm'
 
 class LoginUser extends React.Component {
@@ -14,7 +16,7 @@ class LoginUser extends React.Component {
           password,
         },
       })
-      console.log(signin.data.signinUser.token)
+      signIn(signin.data.signinUser.token)
     } catch (err) {
       console.log(err)
     }
