@@ -34,7 +34,7 @@ const NavWrapper = ({ loading, user }) => {
     return <Login />
   }
 
-  return <Navigator />
+  return <Navigator screenProps={{ user }} />
 }
 
 const userQuery = gql`

@@ -18,7 +18,7 @@ class NewPost extends React.Component {
   }
 
   newPost = ({ title, body }) => {
-    const { newPost, navigation } = this.props
+    const { newPost, navigation, screenProps } = this.props
 
     this.setState({ loading: true })
 
@@ -26,6 +26,7 @@ class NewPost extends React.Component {
       variables: {
         title,
         body,
+        userID: screenProps.user.id,
       }
     }).then(() => {
       navigation.goBack()
@@ -51,8 +52,8 @@ class NewPost extends React.Component {
 }
 
 const newPost = gql`
-  mutation NewPost($title: String!, $body: String!) {
-    createPost(title: $title, body: $body) {
+  mutation NewPost($title: String!, $body: String!, $userId: ID!) {
+    createPost(title: $title, body: $body, userId: $userId) {
       id
     }
   }

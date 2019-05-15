@@ -9,7 +9,7 @@ import navigationStyles from './styles/navigationStyles'
 class Home extends React.Component {
   static navigationOptions = {
     ...navigationStyles,
-    title: 'Hey',
+    title: 'Home Page',
   }
 
   goToPost = () => {
